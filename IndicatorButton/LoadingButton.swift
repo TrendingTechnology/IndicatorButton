@@ -59,13 +59,23 @@ open class LoadingButton: UIButton {
         if activityIndicator == nil {
             activityIndicator = createActivityIndicator()
         }
+
         self.isUserInteractionEnabled = false
         activityIndicator.isUserInteractionEnabled = false
-        UIView.transition(with: self, duration: 0.5, options: .curveEaseOut) {
-            self.alpha = 0.80
-            self.titleLabel?.alpha = self.indicatorPosition == .center ? 0.0 : 0.6
-        } completion: { finished in
-            self.showSpinning()
+
+        UIView.animate(withDuration: 0.2) {
+            self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        } completion: { done in
+            UIView.animate(withDuration: 0.2) {
+                self.transform = CGAffineTransform.identity
+            } completion: { done in
+                UIView.transition(with: self, duration: 0.5, options: .curveEaseOut) {
+                    self.alpha = 0.8
+                    self.titleLabel?.alpha = self.indicatorPosition == .center ? 0.0 : 0.6
+                } completion: { finished in
+                    self.showSpinning()
+                }
+            }
         }
     }
 
@@ -75,6 +85,7 @@ open class LoadingButton: UIButton {
                   self.activityIndicator != nil else {
                 return
             }
+
             self.activityIndicator.stopAnimating()
             self.isUserInteractionEnabled = true
             self.activityIndicator.removeFromSuperview()
