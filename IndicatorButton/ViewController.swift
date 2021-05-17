@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         loadingBtn = LoadingButton(text: "Connect",
                                    textColor: .white,
                                    font: UIFont.systemFont(ofSize: 18),
-                                   backgroundColor: .gray,
+                                   backgroundColor: .darkGray,
                                    cornerRadius: 12.0)
 
         loadingBtn.translatesAutoresizingMaskIntoConstraints = false

@@ -11,7 +11,6 @@ public typealias BtnCallBack = (() -> Void)?
 
 open class LoadingButton: UIButton {
     private var activityIndicator: UIActivityIndicatorView!
-    private var title: String?
     private var activityIndicatorColor: UIColor = .white
 
     private var indicatorPosition: IndicatorPosition = .center
@@ -40,7 +39,6 @@ open class LoadingButton: UIButton {
         super.init(frame: frame)
         if let text = text {
             self.setTitle(text)
-            self.title = text
             self.setTitleColor(textColor, for: .normal)
             self.activityIndicatorColor = textColor!
             self.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -60,25 +58,34 @@ open class LoadingButton: UIButton {
         if activityIndicator == nil {
             activityIndicator = createActivityIndicator()
         }
-        self.isEnabled = false
-        self.alpha = 0.7
-        if indicatorPosition == .center {
-            self.setTitle("")
+        self.isUserInteractionEnabled = false
+        activityIndicator.isUserInteractionEnabled = false
+        UIView.transition(with: self, duration: 0.34, options: .curveEaseOut) {
+            if self.indicatorPosition == .center {
+                self.titleLabel?.alpha = 0.0
+            }
+            self.alpha = 0.80
+        } completion: { finished in
+            self.showSpinning()
         }
-        showSpinning()
     }
 
     open func stop() {
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            guard self.activityIndicator != nil else { return }
-            self.activityIndicator.stopAnimating()
-            self.isEnabled = true
-            self.alpha = 1.0
-            if self.indicatorPosition == .center {
-                self.setTitle(self.title)
+            guard let self = self,
+                  self.activityIndicator != nil else {
+                return
             }
+            self.activityIndicator.stopAnimating()
+            self.isUserInteractionEnabled = true
             self.activityIndicator.removeFromSuperview()
+            UIView.transition(with: self, duration: 0.4, options: .curveEaseOut) {
+                self.alpha = 1.0
+                if self.indicatorPosition == .center {
+                    self.titleLabel?.alpha = 1.0
+                }
+            } completion: { finished in
+            }
         }
     }
 
