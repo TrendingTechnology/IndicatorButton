@@ -9,13 +9,14 @@ import UIKit
 
 public typealias BtnCallBack = (() -> Void)?
 
+@IBDesignable
 open class LoadingButton: UIButton {
     private var activityIndicator: UIActivityIndicatorView!
     private var activityIndicatorColor: UIColor = .white
 
     private var indicatorPosition: IndicatorPosition = .center
 
-    open var cornerRadius: CGFloat = 4.0 {
+    @IBInspectable open var cornerRadius: CGFloat = 4.0 {
         didSet {
             self.clipsToBounds = (self.cornerRadius > 0)
             self.layer.cornerRadius = self.cornerRadius
@@ -60,11 +61,9 @@ open class LoadingButton: UIButton {
         }
         self.isUserInteractionEnabled = false
         activityIndicator.isUserInteractionEnabled = false
-        UIView.transition(with: self, duration: 0.34, options: .curveEaseOut) {
-            if self.indicatorPosition == .center {
-                self.titleLabel?.alpha = 0.0
-            }
+        UIView.transition(with: self, duration: 0.5, options: .curveEaseOut) {
             self.alpha = 0.80
+            self.titleLabel?.alpha = self.indicatorPosition == .center ? 0.0 : 0.6
         } completion: { finished in
             self.showSpinning()
         }
@@ -79,11 +78,11 @@ open class LoadingButton: UIButton {
             self.activityIndicator.stopAnimating()
             self.isUserInteractionEnabled = true
             self.activityIndicator.removeFromSuperview()
-            UIView.transition(with: self, duration: 0.4, options: .curveEaseOut) {
+            UIView.transition(with: self,
+                              duration: 0.5,
+                              options: .curveEaseOut) {
                 self.alpha = 1.0
-                if self.indicatorPosition == .center {
-                    self.titleLabel?.alpha = 1.0
-                }
+                self.titleLabel?.alpha = 1.0
             } completion: { finished in
             }
         }

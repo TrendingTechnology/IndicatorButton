@@ -16,8 +16,8 @@ class ViewController: UIViewController {
         loadingBtn = LoadingButton(text: "Connect",
                                    textColor: .white,
                                    font: UIFont.systemFont(ofSize: 18),
-                                   backgroundColor: .darkGray,
-                                   cornerRadius: 12.0)
+                                   backgroundColor: .systemPink,
+                                   cornerRadius: 6.0)
 
         loadingBtn.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(loadingBtn)
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 
     @objc func loadingBtnClicked() {
         loadingBtn.start()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             self.loadingBtn.stop()
         }
     }
