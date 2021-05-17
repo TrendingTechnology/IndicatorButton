@@ -11,7 +11,9 @@ public typealias BtnCallBack = (() -> Void)?
 
 @IBDesignable
 open class LoadingButton: UIButton {
+
     private var activityIndicator: UIActivityIndicatorView!
+
     private var activityIndicatorColor: UIColor = .white
 
     private var indicatorPosition: IndicatorPosition = .center
@@ -22,6 +24,10 @@ open class LoadingButton: UIButton {
             self.layer.cornerRadius = self.cornerRadius
         }
     }
+
+    @IBInspectable open var animatedScale: CGFloat = 1.0
+
+    @IBInspectable open var animatedScaleDuration: Double = 0.2
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,10 +69,10 @@ open class LoadingButton: UIButton {
         self.isUserInteractionEnabled = false
         activityIndicator.isUserInteractionEnabled = false
 
-        UIView.animate(withDuration: 0.2) {
-            self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        UIView.animate(withDuration: animatedScaleDuration) {
+            self.transform = CGAffineTransform(scaleX: self.animatedScale, y: self.animatedScale)
         } completion: { done in
-            UIView.animate(withDuration: 0.2) {
+            UIView.animate(withDuration: self.animatedScaleDuration) {
                 self.transform = CGAffineTransform.identity
             } completion: { done in
                 UIView.transition(with: self, duration: 0.5, options: .curveEaseOut) {
@@ -89,6 +95,7 @@ open class LoadingButton: UIButton {
             self.activityIndicator.stopAnimating()
             self.isUserInteractionEnabled = true
             self.activityIndicator.removeFromSuperview()
+
             UIView.transition(with: self,
                               duration: 0.5,
                               options: .curveEaseOut) {

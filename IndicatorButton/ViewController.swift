@@ -18,6 +18,7 @@ class ViewController: UIViewController {
                                    font: UIFont.systemFont(ofSize: 18),
                                    backgroundColor: .systemPink,
                                    cornerRadius: 6.0)
+        loadingBtn.animatedScale = 0.95
 
         loadingBtn.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(loadingBtn)
