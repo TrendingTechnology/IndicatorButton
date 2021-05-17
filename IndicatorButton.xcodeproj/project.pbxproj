@@ -15,6 +15,8 @@
 		2EB0F5A42651F34C0084F1AF /* IndicatorButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0F5A32651F34C0084F1AF /* IndicatorButtonTests.swift */; };
 		2EB0F5AF2651F34C0084F1AF /* IndicatorButtonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0F5AE2651F34C0084F1AF /* IndicatorButtonUITests.swift */; };
 		2EB0F5BD2651F7DE0084F1AF /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0F5BC2651F7DE0084F1AF /* LoadingButton.swift */; };
+		2EB0F5BF26522E450084F1AF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0F5BE26522E450084F1AF /* Extensions.swift */; };
+		2EB0F5C126523CF30084F1AF /* IndicatorPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0F5C026523CF30084F1AF /* IndicatorPosition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		2EB0F5AE2651F34C0084F1AF /* IndicatorButtonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorButtonUITests.swift; sourceTree = "<group>"; };
 		2EB0F5B02651F34C0084F1AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2EB0F5BC2651F7DE0084F1AF /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
+		2EB0F5BE26522E450084F1AF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		2EB0F5C026523CF30084F1AF /* IndicatorPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorPosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				2EB0F5972651F34B0084F1AF /* LaunchScreen.storyboard */,
 				2EB0F59A2651F34B0084F1AF /* Info.plist */,
 				2EB0F5BC2651F7DE0084F1AF /* LoadingButton.swift */,
+				2EB0F5BE26522E450084F1AF /* Extensions.swift */,
+				2EB0F5C026523CF30084F1AF /* IndicatorPosition.swift */,
 			);
 			path = IndicatorButton;
 			sourceTree = "<group>";
@@ -257,6 +263,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EB0F5C126523CF30084F1AF /* IndicatorPosition.swift in Sources */,
+				2EB0F5BF26522E450084F1AF /* Extensions.swift in Sources */,
 				2EB0F5BD2651F7DE0084F1AF /* LoadingButton.swift in Sources */,
 				2EB0F5912651F3490084F1AF /* ViewController.swift in Sources */,
 				2EB0F58D2651F3490084F1AF /* AppDelegate.swift in Sources */,

@@ -7,29 +7,61 @@
 
 import UIKit
 
-public enum IndicatorPosition {
-    case left
-    case right
-    case center
-}
-
 open class LoadingButton: UIButton {
-
     private var activityIndicator: UIActivityIndicatorView!
     private var title: String?
+    private var activityIndicatorColor: UIColor = .white
 
-    open var activityIndicatorColor: UIColor = .lightGray
-    open var indicatorPosition: IndicatorPosition = .center
+    private var indicatorPosition: IndicatorPosition = .center
+
+    open var cornerRadius: CGFloat = 4.0 {
+        didSet {
+            self.clipsToBounds = (self.cornerRadius > 0)
+            self.layer.cornerRadius = self.cornerRadius
+        }
+    }
+
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    public init(
+        frame: CGRect = .zero,
+        text: String? = nil,
+        textColor: UIColor? = .white,
+        font: UIFont? = nil,
+        backgroundColor: UIColor? = .black,
+        cornerRadius: CGFloat = 4.0,
+        withShadow: Bool = false,
+        indicatorPosition: IndicatorPosition = .center
+    ) {
+        super.init(frame: frame)
+        if let text = text {
+            self.setTitle(text)
+            self.title = text
+            self.setTitleColor(textColor, for: .normal)
+            self.activityIndicatorColor = textColor!
+            self.titleLabel?.adjustsFontSizeToFitWidth = true
+        }
+        self.titleLabel?.font = font
+        self.backgroundColor = backgroundColor
+        self.cornerRadius = cornerRadius
+        self.setCornerBorder(cornerRadius: cornerRadius)
+        self.indicatorPosition = indicatorPosition
+    }
+
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 
     open func start() {
         if activityIndicator == nil {
             activityIndicator = createActivityIndicator()
         }
         self.isEnabled = false
-        self.alpha = 0.7
+        self.alpha = 0.8
         if indicatorPosition == .center {
-            title = self.titleLabel?.text
-            self.setTitle("", for: .normal)
+            self.setTitle("")
         }
         showSpinning()
     }
@@ -42,7 +74,7 @@ open class LoadingButton: UIButton {
             self.isEnabled = true
             self.alpha = 1.0
             if self.indicatorPosition == .center {
-                self.setTitle(self.title, for: .normal)
+                self.setTitle(self.title)
             }
             self.activityIndicator.removeFromSuperview()
         }
@@ -69,9 +101,10 @@ open class LoadingButton: UIButton {
             nsLayout = NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: activityIndicator, attribute: .leading, multiplier: 1, constant: -12.0)
         case .center:
             nsLayout = NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: activityIndicator, attribute: .centerX, multiplier: 1, constant: 0)
-        default:
+        case .right:
             nsLayout = NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: activityIndicator, attribute: .trailing, multiplier: 1, constant: 12.0)
         }
+
         self.addConstraint(nsLayout)
 
         let yCenterConstraint = NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: activityIndicator, attribute: .centerY, multiplier: 1, constant: 0)

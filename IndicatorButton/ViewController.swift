@@ -8,16 +8,13 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var loadingBtn: LoadingButton = LoadingButton()
+    var loadingBtn: LoadingButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         view.backgroundColor = .white
-        loadingBtn.backgroundColor = .black
-        loadingBtn.setTitle("印刷", for: .normal)
-        loadingBtn.clipsToBounds = true
-        loadingBtn.layer.cornerRadius = 6.0
+        loadingBtn = LoadingButton(text: "レシートを印刷", textColor: .white, font: UIFont.systemFont(ofSize: 18), backgroundColor: .black, cornerRadius: 12.0, indicatorPosition: .right)
+
         loadingBtn.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(loadingBtn)
         loadingBtn.widthAnchor.constraint(equalToConstant: 220).isActive = true
@@ -28,9 +25,8 @@ class ViewController: UIViewController {
     }
 
     @objc func loadingBtnClicked() {
-//        print("Clicked")
         loadingBtn.start()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.loadingBtn.stop()
         }
     }
