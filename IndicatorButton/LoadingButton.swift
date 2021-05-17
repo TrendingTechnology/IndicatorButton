@@ -7,6 +7,8 @@
 
 import UIKit
 
+public typealias BtnCallBack = (() -> Void)?
+
 open class LoadingButton: UIButton {
     private var activityIndicator: UIActivityIndicatorView!
     private var title: String?
@@ -59,7 +61,7 @@ open class LoadingButton: UIButton {
             activityIndicator = createActivityIndicator()
         }
         self.isEnabled = false
-        self.alpha = 0.8
+        self.alpha = 0.7
         if indicatorPosition == .center {
             self.setTitle("")
         }
@@ -67,9 +69,9 @@ open class LoadingButton: UIButton {
     }
 
     open func stop() {
-        guard activityIndicator != nil else { return }
-
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            guard self.activityIndicator != nil else { return }
             self.activityIndicator.stopAnimating()
             self.isEnabled = true
             self.alpha = 1.0

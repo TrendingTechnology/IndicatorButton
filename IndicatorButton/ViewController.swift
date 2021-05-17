@@ -13,7 +13,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        loadingBtn = LoadingButton(text: "レシートを印刷", textColor: .white, font: UIFont.systemFont(ofSize: 18), backgroundColor: .black, cornerRadius: 12.0, indicatorPosition: .right)
+        loadingBtn = LoadingButton(text: "Connect",
+                                   textColor: .white,
+                                   font: UIFont.systemFont(ofSize: 18),
+                                   backgroundColor: .gray,
+                                   cornerRadius: 12.0)
 
         loadingBtn.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(loadingBtn)
@@ -26,7 +30,7 @@ class ViewController: UIViewController {
 
     @objc func loadingBtnClicked() {
         loadingBtn.start()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.loadingBtn.stop()
         }
     }
