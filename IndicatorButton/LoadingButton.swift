@@ -38,6 +38,34 @@ open class LoadingButton: UIButton {
         didSet {
             self.clipsToBounds = (self.cornerRadius > 0)
             self.layer.cornerRadius = self.cornerRadius
+            if let gradientLayer = gradient {
+                gradientLayer.cornerRadius = cornerRadius
+            }
+        }
+    }
+
+    @IBInspectable open var shadowColor: UIColor = UIColor.clear {
+        didSet {
+            self.layer.shadowColor = self.shadowColor.cgColor
+        }
+    }
+
+    @IBInspectable open var shadowOffset: CGSize = .zero {
+        didSet {
+            self.layer.masksToBounds = !(self.shadowOffset != .zero)
+            self.layer.shadowOffset = self.shadowOffset
+        }
+    }
+
+    @IBInspectable open var shadowOpacity: Float = 0 {
+        didSet {
+            self.layer.shadowOpacity = self.shadowOpacity
+        }
+    }
+
+    @IBInspectable open var shadowRadius: CGFloat = 0 {
+        didSet {
+            self.layer.shadowRadius = self.shadowRadius
         }
     }
 
@@ -99,7 +127,6 @@ open class LoadingButton: UIButton {
         font: UIFont? = nil,
         backgroundColor: UIColor? = .black,
         cornerRadius: CGFloat = 4.0,
-        withShadow: Bool = false,
         indicatorPosition: IndicatorPosition = .center
     ) {
         super.init(frame: frame)
