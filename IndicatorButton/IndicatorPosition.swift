@@ -7,6 +7,6 @@
 
 public enum IndicatorPosition {
     case left
-    case right
     case center
+    case right
 }
