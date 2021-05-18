@@ -16,9 +16,16 @@ class ViewController: UIViewController {
         loadingBtn = LoadingButton(text: "Connect",
                                    textColor: .white,
                                    font: UIFont.systemFont(ofSize: 18),
-                                   backgroundColor: .systemPink,
+                                   backgroundColor: .systemGreen,
                                    cornerRadius: 6.0)
         loadingBtn.animatedScale = 0.95
+        loadingBtn.borderWidth = 2
+        loadingBtn.borderColor = .systemPink
+
+        loadingBtn.gradientEnabled = true
+        loadingBtn.gradientStartColor = .systemPink
+        loadingBtn.gradientEndColor = .systemGreen
+        loadingBtn.gradientHorizontal = true
 
         loadingBtn.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(loadingBtn)

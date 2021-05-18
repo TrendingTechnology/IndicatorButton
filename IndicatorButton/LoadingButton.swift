@@ -18,6 +18,22 @@ open class LoadingButton: UIButton {
 
     private var indicatorPosition: IndicatorPosition = .center
 
+    @IBInspectable open var animatedScale: CGFloat = 1.0
+
+    @IBInspectable open var animatedScaleDuration: Double = 0.2
+
+    @IBInspectable open var borderColor: UIColor = UIColor.clear {
+        didSet {
+            self.layer.borderColor = self.borderColor.cgColor
+        }
+    }
+
+    @IBInspectable open var borderWidth: CGFloat = 0 {
+        didSet {
+            self.layer.borderWidth = self.borderWidth
+        }
+    }
+
     @IBInspectable open var cornerRadius: CGFloat = 4.0 {
         didSet {
             self.clipsToBounds = (self.cornerRadius > 0)
@@ -25,9 +41,52 @@ open class LoadingButton: UIButton {
         }
     }
 
-    @IBInspectable open var animatedScale: CGFloat = 1.0
+    @IBInspectable open var gradientEnabled: Bool = false {
+        didSet {
+            customGradient()
+        }
+    }
 
-    @IBInspectable open var animatedScaleDuration: Double = 0.2
+    @IBInspectable open var gradientStartColor: UIColor = UIColor.clear {
+        didSet {
+            customGradient()
+        }
+    }
+
+    @IBInspectable open var gradientEndColor: UIColor = UIColor.clear {
+        didSet {
+            customGradient()
+        }
+    }
+
+    @IBInspectable open var gradientHorizontal: Bool = false {
+        didSet {
+            customGradient()
+        }
+    }
+
+    var gradient: CAGradientLayer?
+
+    func customGradient() {
+        gradient?.removeFromSuperlayer()
+        guard gradientEnabled else { return }
+
+        gradient = CAGradientLayer()
+        guard let gradient = gradient else { return }
+
+        gradient.frame = self.layer.bounds
+        gradient.colors = [gradientStartColor.cgColor, gradientEndColor.cgColor]
+        gradient.startPoint = CGPoint(x: 0, y: 0)
+        gradient.endPoint = gradientHorizontal ? CGPoint(x: 1, y: 0) : CGPoint(x: 0, y: 1)
+        gradient.cornerRadius = self.cornerRadius
+
+        self.layer.insertSublayer(gradient, below: self.imageView?.layer)
+    }
+
+    override open func layoutSubviews() {
+        super.layoutSubviews()
+        gradient?.frame = self.layer.bounds
+    }
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
