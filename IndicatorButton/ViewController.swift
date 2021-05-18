@@ -18,27 +18,32 @@ class ViewController: UIViewController {
         button1 = LoadingButton(text: "Tap me",
                                    textColor: .white,
                                    font: UIFont.systemFont(ofSize: 18, weight: .semibold),
-                                   backgroundColor: .systemGreen,
-                                   cornerRadius: 6.0,
+                                   backgroundColor: .systemBlue,
+                                   cornerRadius: 4.0,
                                    indicatorPosition: .left)
         button2 = LoadingButton(text: "Tap me",
                                    textColor: .white,
                                    font: UIFont.systemFont(ofSize: 18, weight: .regular),
-                                   backgroundColor: .systemBlue,
+                                   backgroundColor: .systemPurple,
                                    cornerRadius: 12.0)
         button3 = LoadingButton(text: "Tap me",
                                    textColor: .white,
                                    font: UIFont.systemFont(ofSize: 20, weight: .medium),
-                                   backgroundColor: .systemGreen,
+                                   backgroundColor: .systemPink,
                                    cornerRadius: 10.0,
                                    indicatorPosition: .right)
-        
+
         button1.animatedScale = 0.95
         button2.animatedScale = 0.70
 
         button1.gradientEnabled = true
         button1.gradientStartColor = .systemRed
         button1.gradientEndColor = .systemBlue
+        button1.gradientDirection = 6
+
+        button3.gradientStartColor = .systemGreen
+        button3.gradientEndColor = .systemPurple
+        button3.gradientDirection = 7
 
         button1.translatesAutoresizingMaskIntoConstraints = false
         button2.translatesAutoresizingMaskIntoConstraints = false
@@ -63,6 +68,9 @@ class ViewController: UIViewController {
         button3.topAnchor.constraint(equalTo: button2.bottomAnchor, constant: 20).isActive = true
 
         button1.addTarget(self, action: #selector(loadingBtnClicked), for: .touchUpInside)
+        print(button1.gradientEnabled)
+        print(button2.gradientEnabled)
+        print(button3.gradientEnabled)
     }
 
     @objc func loadingBtnClicked() {

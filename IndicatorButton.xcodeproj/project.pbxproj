@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E3ED84C26539325000A215E /* GradientDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3ED84B26539324000A215E /* GradientDirection.swift */; };
 		2EB0F58D2651F3490084F1AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0F58C2651F3490084F1AF /* AppDelegate.swift */; };
 		2EB0F58F2651F3490084F1AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0F58E2651F3490084F1AF /* SceneDelegate.swift */; };
 		2EB0F5912651F3490084F1AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0F5902651F3490084F1AF /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E3ED84B26539324000A215E /* GradientDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientDirection.swift; sourceTree = "<group>"; };
 		2EB0F5892651F3490084F1AF /* IndicatorButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IndicatorButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EB0F58C2651F3490084F1AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EB0F58E2651F3490084F1AF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				2EB0F5BC2651F7DE0084F1AF /* LoadingButton.swift */,
 				2EB0F5BE26522E450084F1AF /* Extensions.swift */,
 				2EB0F5C026523CF30084F1AF /* IndicatorPosition.swift */,
+				2E3ED84B26539324000A215E /* GradientDirection.swift */,
 			);
 			path = IndicatorButton;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				2EB0F5BF26522E450084F1AF /* Extensions.swift in Sources */,
 				2EB0F5BD2651F7DE0084F1AF /* LoadingButton.swift in Sources */,
 				2EB0F5912651F3490084F1AF /* ViewController.swift in Sources */,
+				2E3ED84C26539325000A215E /* GradientDirection.swift in Sources */,
 				2EB0F58D2651F3490084F1AF /* AppDelegate.swift in Sources */,
 				2EB0F58F2651F3490084F1AF /* SceneDelegate.swift in Sources */,
 			);

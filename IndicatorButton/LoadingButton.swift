@@ -69,6 +69,7 @@ open class LoadingButton: UIButton {
         }
     }
 
+    /// Not work correctly ????????
     @IBInspectable open var gradientEnabled: Bool = false {
         didSet {
             customGradient()
@@ -87,8 +88,13 @@ open class LoadingButton: UIButton {
         }
     }
 
-    @IBInspectable open var gradientHorizontal: Bool = false {
-        didSet {
+    private var direction: GradientDirection = .toRight
+    @IBInspectable open var gradientDirection: Int {
+        get {
+            return self.direction.rawValue
+        }
+        set (index) {
+            self.direction = GradientDirection(rawValue: index) ?? .toRight
             customGradient()
         }
     }
@@ -104,8 +110,10 @@ open class LoadingButton: UIButton {
 
         gradient.frame = self.layer.bounds
         gradient.colors = [gradientStartColor.cgColor, gradientEndColor.cgColor]
-        gradient.startPoint = CGPoint(x: 0, y: 0)
-        gradient.endPoint = gradientHorizontal ? CGPoint(x: 1, y: 0) : CGPoint(x: 0, y: 1)
+        gradient.locations = [0.0, 1.0]
+        let dirPoint = directionPoint(CGSize(width: 1, height: 1))
+        gradient.startPoint = dirPoint.start
+        gradient.endPoint = dirPoint.end
         gradient.cornerRadius = self.cornerRadius
 
         self.layer.insertSublayer(gradient, below: self.imageView?.layer)
@@ -221,5 +229,34 @@ open class LoadingButton: UIButton {
 
         let yCenterConstraint = NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: activityIndicator, attribute: .centerY, multiplier: 1, constant: 0)
         self.addConstraint(yCenterConstraint)
+    }
+
+    private func directionPoint(_ size: CGSize) -> (start: CGPoint, end: CGPoint) {
+        switch direction {
+        case .toTop:
+            return (CGPoint(x: size.width / 2, y: size.height),
+                    CGPoint(x: size.width / 2, y: 0.0))
+        case .toRight:
+            return (CGPoint(x: 0.0, y: size.width / 2),
+                    CGPoint(x: size.width, y: size.height / 2))
+        case .toBottom:
+            return (CGPoint(x: size.width / 2, y: 0.0),
+                    CGPoint(x: size.width / 2, y: size.height))
+        case .toLeft:
+            return (CGPoint(x: size.width, y: size.height / 2),
+                    CGPoint(x: 0.0, y: size.height / 2))
+        case .toTopRight:
+            return (CGPoint(x: 0.0, y: size.height),
+                    CGPoint(x: size.width, y: 0.0))
+        case .toTopLeft:
+            return (CGPoint(x: size.width, y: size.height),
+                    CGPoint(x: 0.0, y: 0.0))
+        case .toBottomRight:
+            return (CGPoint(x: 0.0, y: 0.0),
+                    CGPoint(x: size.width, y: size.height))
+        case .toBottomLeft:
+            return (CGPoint(x: size.width, y: 0.0),
+                    CGPoint(x: 0.0, y: size.height))
+        }
     }
 }
