@@ -68,9 +68,6 @@ class ViewController: UIViewController {
         button3.topAnchor.constraint(equalTo: button2.bottomAnchor, constant: 20).isActive = true
 
         button1.addTarget(self, action: #selector(loadingBtnClicked), for: .touchUpInside)
-        print(button1.gradientEnabled)
-        print(button2.gradientEnabled)
-        print(button3.gradientEnabled)
     }
 
     @objc func loadingBtnClicked() {

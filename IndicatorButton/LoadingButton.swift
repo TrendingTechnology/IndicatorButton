@@ -69,7 +69,6 @@ open class LoadingButton: UIButton {
         }
     }
 
-    /// Not work correctly ????????
     @IBInspectable open var gradientEnabled: Bool = false {
         didSet {
             customGradient()
