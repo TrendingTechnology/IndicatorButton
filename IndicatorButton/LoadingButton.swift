@@ -18,6 +18,8 @@ open class LoadingButton: UIButton {
 
     private var indicatorPosition: IndicatorPosition = .center
 
+    private var padding: CGFloat = 0.0
+
     @IBInspectable open var animatedScale: CGFloat = 1.0
 
     @IBInspectable open var animatedScaleDuration: Double = 0.2
@@ -161,6 +163,9 @@ open class LoadingButton: UIButton {
 
         self.isUserInteractionEnabled = false
         activityIndicator.isUserInteractionEnabled = false
+        let indicatorWidth = activityIndicator.frame.width != 0 ?
+            activityIndicator.frame.width : 20
+        self.padding = (self.frame.height - indicatorWidth) / 2
 
         UIView.animate(withDuration: animatedScaleDuration) {
             self.transform = CGAffineTransform(scaleX: self.animatedScale, y: self.animatedScale)
@@ -217,11 +222,11 @@ open class LoadingButton: UIButton {
         var nsLayout: NSLayoutConstraint!
         switch indicatorPosition {
         case .left:
-            nsLayout = NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: activityIndicator, attribute: .leading, multiplier: 1, constant: -12.0)
+            nsLayout = NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: activityIndicator, attribute: .leading, multiplier: 1, constant: -padding)
         case .center:
             nsLayout = NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: activityIndicator, attribute: .centerX, multiplier: 1, constant: 0)
         case .right:
-            nsLayout = NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: activityIndicator, attribute: .trailing, multiplier: 1, constant: 12.0)
+            nsLayout = NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: activityIndicator, attribute: .trailing, multiplier: 1, constant: padding)
         }
 
         self.addConstraint(nsLayout)
