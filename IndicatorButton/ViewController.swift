@@ -34,10 +34,11 @@ class ViewController: UIViewController {
         button2.animatedScale = 0.70
 
         button1.gradientEnabled = true
-        button1.gradientStartColor = .systemRed
-        button1.gradientEndColor = .systemBlue
-        button1.gradientDirection = 6
+        button1.gradientStartColor = UIColor(hex: "#FF8960")
+        button1.gradientEndColor = UIColor(hex: "#FF62A5")
+        button1.gradientDirection = 1
 
+        button3.gradientEnabled = true
         button3.gradientStartColor = .systemGreen
         button3.gradientEndColor = .systemPurple
         button3.gradientDirection = 7
