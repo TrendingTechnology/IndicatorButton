@@ -16,18 +16,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         button1 = LoadingButton(text: "Tap me",
-                                   textColor: .white,
                                    font: UIFont.systemFont(ofSize: 18, weight: .semibold),
                                    backgroundColor: .systemBlue,
                                    cornerRadius: 4.0,
                                    indicatorPosition: .left)
         button2 = LoadingButton(text: "Tap me",
-                                   textColor: .white,
                                    font: UIFont.systemFont(ofSize: 18, weight: .regular),
                                    backgroundColor: .systemPurple,
                                    cornerRadius: 12.0)
         button3 = LoadingButton(text: "Tap me",
-                                   textColor: .white,
                                    font: UIFont.systemFont(ofSize: 20, weight: .medium),
                                    backgroundColor: .systemPink,
                                    cornerRadius: 10.0,
